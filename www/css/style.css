@@ -389,8 +389,8 @@ article h2 a:hover{color:#ff3b1a;}
 	float:right;
 	width:58px;
 	height:58px;
-	padding:0 10px 0 0;
-	border-right:1px solid #eee;
+	padding:0 0 0 14px;
+	border-left:1px solid #eee;
 }
 .post-preview a,
 .post-preview img{
