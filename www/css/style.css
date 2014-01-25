@@ -244,7 +244,7 @@ footer{
 }
 footer{
 	border-top:1px solid ##ddd;
-	padding:10px 20px 10px 20px;
+	padding:10px 0 10px 0;
 	color:#777;
 	font-size:12px;
 }
@@ -386,7 +386,7 @@ article h2 a:hover{color:#ff3b1a;}
 
 /* post content and preview styling */
 .post-preview{
-	float:left;
+	float:right;
 	width:58px;
 	height:58px;
 	padding:0 10px 0 0;
