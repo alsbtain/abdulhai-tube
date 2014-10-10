@@ -371,7 +371,6 @@ article h2 a:hover{color:#ff3b1a;}
 /* Date */
 .date{
 	font-size:10px;
-	width: 100%;
 }
 .date span{
 	display:inline-block;
