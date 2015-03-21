@@ -63,6 +63,14 @@ article img{
 	border:1px solid #eee;
 	background:#fff;
 }
+
+.noborder{
+	margin:0 !important;
+	padding:0 !important;
+	border:0 !important;
+	background:transparent !important;
+}
+
 a{ color:#b31a00;}
 a:hover{ color:#2d2d2d;}
 /* headings */
