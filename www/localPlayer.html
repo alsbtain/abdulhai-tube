@@ -2,24 +2,20 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>الخطيب الحسيني عبدالحي آل قمبر</title>
+  <title>استماع مقطع | الخطيب الحسيني عبدالحي آل قمبر</title>
   <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0" /> 
   <link rel="stylesheet" media="all" href="css/style.css" type="text/css">
   <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-  <script type="text/javascript" charset="utf-8" src="js/video.js"></script>
+  <script type="text/javascript" src="jwplayer/jwplayer.js"></script>
   <script type="text/javascript" src="js/PushNotification.js"></script>
   
   <script type="text/javascript">	
 	function getUrlVars() {
-		var vars = {};
-		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-			vars[key] = value;
-		});
-		return vars;
-	}
-	
-	function openPage(newPage) {
-		location.href='index.html?c=' + getUrlVars()["c"] + '&page=' + (newPage-1);
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
 	}
   </script>
   
@@ -44,10 +40,10 @@
         	</ul>
 	    </nav>
     </header>
-
+      
     <div class="content" id="mainContent"><img style="display: block; margin: 0 auto;" src="images/ajax.gif" border="0" /><br /><p style="color: #414141; text-align: center;">جاري التحميل..</p></div>
-	
-    <footer>
+    
+	<footer>
     	<p style="direction: ltr; text-align: center;">Copyright &copy; 2015 <a href="#" onclick="window.open('http://www.abdulhai.net/', '_system');return false;">www.abdulhai.net</a><br />
 		Powered by <a href="#" onclick="window.open('http://www.alsbtain.net/', '_system');return false;">Alsbtain Bulletin</a> - 
 		<a href="#" onclick="window.open('http://mobifreaks.com/free-mobile-website-templates/galaxy-mobi/', '_system');return false;">Mobifreaks</a> Template</p>
@@ -58,19 +54,14 @@
 <script type="text/javascript">
 
 	var pushNotification;
-
+	var mediaID;
+	var mediaIDs;
+	
 	function onDeviceReady() {
-		navigator.splashscreen.hide();
 		checkConnection();
 	}
 
     function checkConnection() {
-		if (navigator.connection.type == Connection.NONE){
-		
-		var output = '<img style="display: block; margin: 0 auto;" src="images/wifi.png" border="0" /><br /><p style="color: #4dc5ff; text-align: center;">هذه الخدمة تتطلب اتصالاً بالإنترنت..<br /><a href="downloads.html"><img src="images/downloads.png" border="0" style="padding-top: 8px;" /></a></p>';
-		document.getElementById('mainContent').innerHTML = output;
-		
-		} else {
 		
 		// Push Notifications DeviceReady
 		
@@ -78,15 +69,29 @@
 		
 		// End of Push Notifications DeviceReady
 		
-		var output_website = '';
-		var headID = document.getElementsByTagName("head")[0];         
-		var newScript = document.createElement('script');  
-		newScript.type = 'text/javascript';
-		newScript.charset = 'utf-8';  
-		newScript.src = 'http://www.abdulhai.net/external/media_mobile12.sb.php?c=' + getUrlVars()["c"] + '&page=' + getUrlVars()["page"];  
-		headID.appendChild(newScript);
+		mediaID = getUrlVars()["id"];
+		
+		var output_title = localStorage.getItem("mediaTitle" + mediaID);
+		var output_name = localStorage.getItem("mediaName" + mediaID);
+		var output_date = localStorage.getItem("mediaDate" + mediaID);
+		var output_file = localStorage.getItem("mediaLink" + mediaID);
+		var output_image = "images/news-img-big.jpg";
+		
+		var output_share = output_title + "\\nالخطيب: " + output_name + "\\n\\nhttp://sbta.in/abdulhai.php?id=" + mediaID + "\\n\\nمن تطبيق الخطيب الحسيني عبدالحي آل قمبر:\\n\\nللأندرويد:\\nhttp://sbta.in/abdulhai_Android\\n\\nلنظام iOS:\\nhttp://sbta.in/abdulhai_iOS";
 
+		document.getElementById('mainContent').innerHTML = '<article><h1><img src="images/arrowright.png" onclick="history.back();" /> ' + output_title + '</h1><p>' + output_name + ' - ' + output_date + '</p><div style="direction: ltr; float: right;"><div id="myElement">جاري تحميل المشغّل...</div></div><div class="clear"></div><br /><p style="text-align: center;"><a href="#" onclick="deleteFile(); return false;">حذف المقطع</a> || <a href="javascript:;" onclick="window.plugins.socialsharing.share(' + "'" + output_share + "'" + ')">مشاركة المقطع</a></p><p id="downloadMSG" style="text-align: center;"></p></article>';
+
+		jwplayer("myElement").setup({
+			file: output_file,
+			image: output_image,
+			width: (window.innerWidth-40),
+			height: Math.round((window.innerWidth-40)*(9/16))
+		});
+		
+		window.onresize = function(event) {
+			jwplayer().resize((window.innerWidth-40),Math.round((window.innerWidth-40)*(9/16)));
 		}
+	
 	}
 	
 	// Push Notifications Functions
@@ -97,19 +102,28 @@
 	
 	document.addEventListener("deviceready", onDeviceReady, true);
 	
-var mediaIDs;
-	
-function goToPlayer(id){
+function deleteFile(){
+
+mediaID = getUrlVars()["id"];
 
 mediaIDs = ';' + localStorage.getItem("downloaded") + ';';
-if(mediaIDs.indexOf(';' + id + ';') > -1){
-window.location.href = "localPlayer.html?id=" + id;
-}else{
-window.location.href = "player.html?id=" + id;
-}
+mediaIDs = mediaIDs.replace(';' + mediaID + ';', ';');
+mediaIDs = mediaIDs.substring(1, mediaIDs.length-1);
+
+localStorage.setItem("downloaded", mediaIDs);
+
+localStorage.removeItem("mediaTitle" + mediaID);
+localStorage.removeItem("mediaName" + mediaID);
+localStorage.removeItem("mediaImg" + mediaID);
+localStorage.removeItem("mediaLink" + mediaID);
+localStorage.removeItem("mediaDate" + mediaID);
+
+//document.getElementById('downloadMSG').innerHTML = '<img class="noborder" src="images/tick.png" /> تم حذف المقطع بنجاح!';
+
+window.history.back();
 
 }
-
+	
    window.addEventListener("load",function() {
 	  // Set a timeout...
 	  setTimeout(function(){

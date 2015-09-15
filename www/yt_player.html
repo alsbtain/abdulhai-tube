@@ -33,6 +33,7 @@
       <div class="clear"></div>
 	    <nav class="vertical menu">
 	    	<ul>
+				<li><a href="downloads.html">التحميلات</a></li>
 	            <li><a href="#" onclick="window.open('http://www.abdulhai.net/', '_system');return false;">الموقع الرسمي للخطيب</a></li>
 	            <li><a href="#" onclick="window.open('https://www.facebook.com/Abdulhai.Qambar', '_system');return false;">صفحة الخطيب على الفيس بوك</a></li>
         	</ul>
@@ -50,6 +51,7 @@
  
 <script src="js/jquery.min.js"></script>
 <script type="text/javascript">
+
 	var pushNotification;
 	
 	function onDeviceReady() {
@@ -59,7 +61,7 @@
     function checkConnection() {
 		if (navigator.connection.type == Connection.NONE){
 		
-		var output = '<img style="display: block; margin: 0 auto;" src="images/wifi.png" border="0" /><br /><p style="color: #4dc5ff; text-align: center;">هذا البرنامج يتطلب اتصالاً بالإنترنت..<br />قم بالاتصال بالإنترنت ومن ثم افتح البرنامج..</p>';
+		var output = '<img style="display: block; margin: 0 auto;" src="images/wifi.png" border="0" /><br /><p style="color: #4dc5ff; text-align: center;">هذه الخدمة تتطلب اتصالاً بالإنترنت..<br /><a href="downloads.html"><img src="images/downloads.png" border="0" style="padding-top: 8px;" /></a></p>';
 		document.getElementById('mainContent').innerHTML = output;
 		
 		} else {
@@ -74,7 +76,7 @@
 		var newScript = document.createElement('script');  
 		newScript.type = 'text/javascript';
 		newScript.charset = 'utf-8';  
-		newScript.src = 'http://www.abdulhai.net/external/media_mobile11.sb.php?ytID=' + getUrlVars()["ytID"] + '&ytC=' + getUrlVars()["ytC"];  
+		newScript.src = 'http://www.abdulhai.net/external/media_mobile12.sb.php?ytID=' + getUrlVars()["ytID"] + '&ytC=' + getUrlVars()["ytC"];  
 		headID.appendChild(newScript);  
 		
 		}		
