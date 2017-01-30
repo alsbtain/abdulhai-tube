@@ -1,24 +1,12 @@
 /*
-	Author Details
-	==============
-
-	Author: Mobifreaks
-	Author URL: http://mobifreaks.com
-
-	Attribution( is must on every page, where this work is used. should be visible to naked eye and Search engine bot[ means should not use noindex, nofollow relations ]):
-
-	// a healty attribution looks like following
-	<a href="http://mobifreaks.com" target="_blank">Design by Mobifreaks</a>
-
-	License: Creative Commons Attribution 3.0 Unported
-	License URL: http://creativecommons.org/licenses/by/3.0/
-
-	if any regards of infringement, may lead to lawsuit under Digital Millennium Copyright Act (DMCA)
-
-	For Attribution removal request. please consider contacting us through http://mobifreaks.com/feedback/ or mail us at support[at]mobifreaks.com
+ *	Author: Mobifreaks
+ * 	Author URL: http://mobifreaks.com
+ *	License: Creative Commons Attribution 3.0 Unported
+ * 	License URl: http://creativecommons.org/licenses/by/3.0/
+ * 	Attribution: <a href="http://mobifreaks.com/free-mobile-website-templates/galaxy-mobi/" title="Design By Mobifreaks.com">Design by Mobifreaks.com</a> or <a href="http://mobifreaks.com" title="Design By Mobifreaks.com">Design By Mobifreaks.com</a> 
  */
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
-article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}
 ol,ul{list-style:none;}
 blockquote,q{quotes:none;}
 blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
@@ -35,7 +23,7 @@ a{text-decoration:none;}
 .pos-absolute{position:absolute;}/* Position Absolute */
 .vertical-base{	vertical-align:baseline;}/* vertical align baseline */
 .vertical-top{	vertical-align:top;}/* vertical align top */
-.underline{	padding-bottom:5px;	border-bottom: 1px solid #ddd; margin:0 0 20px 0;}/* Add 5px bottom padding and a underline */
+.underline{	padding-bottom:5px;	border-bottom: 1px solid #555; margin:0 0 20px 0;}/* Add 5px bottom padding and a underline */ /* HERE */
 nav.vertical ul li{	display:block;}/* vertical menu */
 nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
 img{max-width:96%;}
@@ -49,7 +37,7 @@ body{
 }
 article{
 	font-size:14px;
-	color:#565656;
+	color:#999;
 }
 article,
 article.underline{
@@ -60,8 +48,8 @@ article.underline{
 article img{
 	margin:10px 0;
 	padding:5px;
-	border:1px solid #eee;
-	background:#fff;
+	border:1px solid #555;
+	background:#2d2d2d;
 }
 
 .noborder{
@@ -71,12 +59,12 @@ article img{
 	background:transparent !important;
 }
 
-a{ color:#b31a00;}
-a:hover{ color:#2d2d2d;}
+a{ color:#4dc5ff;}
+a:hover{ color:#ffe04d;}
 /* headings */
 h1, h2, h3, h4, h5, h6{
 	font-weight:bold;
-	color:#767676;
+	color:#bbb;
 }
 h1,h2{line-height:24px;}
 h1{
@@ -229,29 +217,34 @@ form textarea{
 form input,
 form textarea,
 form input[type=submit]{
-	background:#fff;
-	border:1px solid #aaa;
+	background:#2d2d2d;
+	border:1px solid #4d4d4d;
 	width:90%;
 }
 form input[type=submit]{
 	width:94%;
-	background:#ff7c67;
-	color:#2d2d2d;
+	color:#FFE04D;
 	padding:10px;
 }
 body{
 	font-family: Arial, Helvetica, sans-serif;
-	background:#f9f9f9;
+	background:#3d3d3d;
 }
 header{
-	border-bottom:1px solid #ccc;
+	border-bottom:1px solid #5d5d5d;
+	/* Fixed Menubar */
+	top: 0;
+	left: 0;
+	position: fixed;
+	z-index: 9999;
+	width: 100%;
 }
 header,
 footer{
-	background:#fff;
+	background:#2d2d2d;
 }
 footer{
-	border-top:1px solid #ddd;
+	border-top:1px solid #5d5d5d;
 	padding:10px 0 10px 0;
 	color:#777;
 	font-size:12px;
@@ -275,17 +268,17 @@ footer p{
 }
 .options li{
 	float:left;
-	background:url('../images/options.png') no-repeat;
+	background:url('../theme/images/options.png') no-repeat;
 	width:60px;
 	height:60px;
 	display:inline-block;
 	cursor:pointer;
-	border-left:1px solid #ccc;
+	border-left:1px solid #444;
 	text-indent:-1000em;
 }
 .options li.active,
 .active{
-	background-color:#f2f2f2;
+	background-color:#1d1d1d;
 }
 .options li:first-child{
 	background-position: 22px 20px;
@@ -295,22 +288,19 @@ footer p{
 }
 
 .search-box{
-	background:#eee;
+	background:#5d5d5d;
 	padding:5px;
 }
 .search-box input[type=text],
 .search-box input[type=text]:focus{
 	width:84%;
-	background:#f9f9f9;
-	color:#767676;
+	background:rgba(0,0,0,0.3);
+	color:#6d6d6d;
 	border:none;
 	-webkit-appearance: none;
 	-webkit-border-radius:0;
 	-moz-border-radius:0;
 	border-radius:0;
-	-moz-box-shadow:inset 0 0 2px 0 rgba(0,0,0,0.3);
-	-webkit-box-shadow:inset 0 0 2px 0 rgba(0,0,0,0.3);
-	box-shadow:inset 0 0 2px 0 rgba(0,0,0,0.3);
 }
 .search-box input[type=text],
 .search-box input[type=submit]{
@@ -325,39 +315,32 @@ footer p{
 
 .search-box input[type=submit]{
 	width:40px;
-	background: #ff664d; /* Old browsers */
-background: -moz-linear-gradient(top,  #ff664d 0%, #fc492d 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff664d), color-stop(100%,#fc492d)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  #ff664d 0%,#fc492d 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #ff664d 0%,#fc492d 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #ff664d 0%,#fc492d 100%); /* IE10+ */
-background: linear-gradient(to bottom,  #ff664d 0%,#fc492d 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff664d', endColorstr='#fc492d',GradientType=0 ); /* IE6-9 */
+	background:rgba(0,0,0,0.4);
 	border:none;
 	-webkit-appearance: none;
-	color:#fff;
-	font-size:12px;
+	color:#6d6d6d;
+	font-size:16px;
 	position:relative;
 	height:30px;
 	padding:0;
 }
-.search-box input[type=submit]:hover{
+.search-box input[type=submit]:hover,
+.search-box input[type=text]:hover{
 	background:rgba(0,0,0,0.6);
 }
 .content{
-	padding:20px;
+	padding: 20px;
 }
 
-article h2 a{ font-weight:bold; color:#2d2d2d;}
-article h2 a:hover{color:#ff3b1a;}
+article h2 a{ font-weight:normal;}
 /* nav */
 .menu{
-	border-top:1px solid #eee;
-	background:#f2f2f2;
+	border-top:1px solid #5d5d5d;
+	background:#1d1d1d;
 	z-index:100;
 }
 .menu a{
-	color:#666666;
+	color:#666;
 	font-size:14px;
 	font-weight:bold;
 	line-height:50px;
@@ -365,11 +348,10 @@ article h2 a:hover{color:#ff3b1a;}
 	padding:0 20px;
 }
 .menu a:hover{
-	background:#fff;
-	color:#ff664d;
+	color:#aaa;
 }
 .menu li{
-	border-bottom:1px solid #ddd;
+	border-bottom:1px solid #444;
 }
 .menu li:last-child{
 	border:none;
@@ -383,7 +365,7 @@ article h2 a:hover{color:#ff3b1a;}
 .date span{
 	display:inline-block;
 	padding:0 5px;
-	background:#ff7c67;
+	background:#ffe04d;
 	color:#333;
 	-webkit-border-radius:.3em;
 	   -moz-border-radius:.3em;
@@ -398,7 +380,7 @@ article h2 a:hover{color:#ff3b1a;}
 	width:58px;
 	height:58px;
 	padding:0 0 0 14px;
-	border-left:1px solid #eee;
+	border-left:1px solid #555;
 }
 .post-preview a,
 .post-preview img{
@@ -451,83 +433,7 @@ display:block;
 	}
 }
 
-.paginate{
-
-	margin:20px 0 0 0;
-
-}
-
-.paginate ul{
-	margin:0;
-	padding:0;
-}
-.paginate ul li{
-	display:inline-block;
-	margin:0 5px 0 0;
-	line-height: normal;
-	font-size:0;
-}
-.paginate ul li:first-child{
-	padding:0;	
-}
-.paginate ul li a,
-.paginate ul li span.current{
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
-	font-size:10px;
-	position:relative;
-	padding:8px 10px;
-	display: block;
-	-moz-box-shadow:0 0 3px #ccc;
-	-webkit-box-shadow:0 0 3px #ccc;
-	box-shadow:0 0 3px #ccc;
-	background: #f9fcf7; /* Old browsers */
-background: -moz-linear-gradient(top,  #f9fcf7 0%, #f5f9f0 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f9fcf7), color-stop(100%,#f5f9f0)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  #f9fcf7 0%,#f5f9f0 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #f9fcf7 0%,#f5f9f0 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #f9fcf7 0%,#f5f9f0 100%); /* IE10+ */
-background: linear-gradient(to bottom,  #f9fcf7 0%,#f5f9f0 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9fcf7', endColorstr='#f5f9f0',GradientType=0 ); /* IE6-9 */
-
-	font-size:12px;
-	color:#767676;
-}
-.paginate ul li a:hover,
-.paginate ul li span.current{
-	color:#fff;
-	background: #ff664d; /* Old browsers */
-background: -moz-linear-gradient(top,  #ff664d 0%, #fc492d 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff664d), color-stop(100%,#fc492d)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  #ff664d 0%,#fc492d 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #ff664d 0%,#fc492d 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #ff664d 0%,#fc492d 100%); /* IE10+ */
-background: linear-gradient(to bottom,  #ff664d 0%,#fc492d 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff664d', endColorstr='#fc492d',GradientType=0 ); /* IE6-9 */
-
-}
-/*
-	Author Details
-	==============
-
-	Author: Mobifreaks
-	Author URL: http://mobifreaks.com
-
-	Attribution( is must on every page, where this work is used. should be visible to naked eye and Search engine bot[ means should not use noindex, nofollow relations ]):
-
-	// a healty attribution looks like following
-	<a href="http://mobifreaks.com" target="_blank">Design by Mobifreaks</a>
-
-	License: Creative Commons Attribution 3.0 Unported
-	License URL: http://creativecommons.org/licenses/by/3.0/
-
-	if any regards of infringement, may lead to lawsuit under Digital Millennium Copyright Act (DMCA)
-
-	For Attribution removal request. please consider contacting us through http://mobifreaks.com/feedback/ or mail us at support[at]mobifreaks.com
- */
- 
- html, body{
+html, body{
 	height: 100%;
 }
 
@@ -538,6 +444,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff664d', end
 
 .content{
     padding-bottom: 90px;    /* height of footer */
+	padding-top: 75px;    /* height of header */
 }
 
 footer{
@@ -572,3 +479,21 @@ font-weight: bold;
 #ads a:link, #ads a:visited, #ads a:hover, #ads a:active{
 color: #ff0000;
 }
+
+#sbLoading{
+	color: #bbb;
+	text-align: center;
+}
+
+#sbNoWiFi{
+	color: #4dc5ff;
+	text-align: center;
+}
+
+.serverMainColor{
+	color: #bbbbbb;
+}
+
+/* #mainContent{
+	margin-top: 60px;
+} */
