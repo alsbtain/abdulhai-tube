@@ -2,10 +2,12 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>استماع مقطع | الخطيب الحسيني عبدالحي آل قمبر</title>
+  <title>استماع مقطع</title>
   <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0" /> 
   <link rel="stylesheet" media="all" href="css/style.css" type="text/css">
+  <link rel="stylesheet" media="all" href="theme/customize.css" type="text/css">
   <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+  <script type="text/javascript" charset="utf-8" src="settings.js"></script>
   <script type="text/javascript" src="jwplayer/jwplayer.js"></script>
   <script type="text/javascript" src="js/PushNotification.js"></script>
   
@@ -25,26 +27,23 @@
 
   <div class="wrap">
     <header>
-      <div class="logo"><a href="index.html"><img src="images/logo.png" alt="الخطيب الحسيني عبدالحي آل قمبر"/></a></div>
+      <div class="logo"><a href="index.html"><img src="theme/images/logo.png" /></a></div>
       <div class="options">
       	<ul>
-      		<li>Menu</li>
+      		<li>القائمة</li>
       	</ul>
       </div>
       <div class="clear"></div>
 	    <nav class="vertical menu">
-	    	<ul>
-				<li><a href="downloads.html">التحميلات</a></li>
-	            <li><a href="#" onclick="window.open('http://www.abdulhai.net/', '_system');return false;">الموقع الرسمي للخطيب</a></li>
-	            <li><a href="#" onclick="window.open('https://www.facebook.com/Abdulhai.Qambar', '_system');return false;">صفحة الخطيب على الفيس بوك</a></li>
+	    	<ul id="mainSbMenu">
         	</ul>
 	    </nav>
     </header>
       
-    <div class="content" id="mainContent"><img style="display: block; margin: 0 auto;" src="images/ajax.gif" border="0" /><br /><p style="color: #414141; text-align: center;">جاري التحميل..</p></div>
+    <div class="content" id="mainContent"><img style="display: block; margin: 0 auto;" src="theme/images/ajax.gif" border="0" /><br /><p id="sbLoading">جاري التحميل..</p></div>
     
 	<footer>
-    	<p style="direction: ltr; text-align: center;">Copyright &copy; 2015 <a href="#" onclick="window.open('http://www.abdulhai.net/', '_system');return false;">www.abdulhai.net</a><br />
+    	<p style="direction: ltr; text-align: center;">Copyright &copy; 2016 <a href="#" onclick="window.open(siteURL, '_system');return false;"><span id="sb_copyright"></span></a><br />
 		Powered by <a href="#" onclick="window.open('http://www.alsbtain.net/', '_system');return false;">Alsbtain Bulletin</a> - 
 		<a href="#" onclick="window.open('http://mobifreaks.com/free-mobile-website-templates/galaxy-mobi/', '_system');return false;">Mobifreaks</a> Template</p>
     </footer>
@@ -57,9 +56,26 @@
 	var mediaID;
 	var mediaIDs;
 	
-	function onDeviceReady() {
-		checkConnection();
+function onDeviceReady() {
+
+	arrayLength = internalMenu.title.length;
+	sbMenu = '';
+	for (i = 0; i < arrayLength; i++) {
+		sbMenu += '<li><a href="' + internalMenu.url[i] + '">' + internalMenu.title[i] + '</a></li>';
 	}
+	
+	arrayLength = externalMenu.title.length;
+	for (i = 0; i < arrayLength; i++) {
+		sbMenu += '<li><a href="#" onclick="window.open(\'' + externalMenu.url[i] + '\', \'_system\');return false;">' + externalMenu.title[i] + '</a></li>';
+	} 
+	var ul = document.getElementById("mainSbMenu");
+	ul.innerHTML += sbMenu;
+	
+	var sbCopyright = document.getElementById("sb_copyright");
+	sbCopyright.innerHTML = copyRight;
+		
+	checkConnection();
+}
 
     function checkConnection() {
 		
@@ -75,11 +91,11 @@
 		var output_name = localStorage.getItem("mediaName" + mediaID);
 		var output_date = localStorage.getItem("mediaDate" + mediaID);
 		var output_file = localStorage.getItem("mediaLink" + mediaID);
-		var output_image = "images/news-img-big.jpg";
+		var output_image = "theme/images/news-img-big.jpg";
 		
-		var output_share = output_title + "\\nالخطيب: " + output_name + "\\n\\nhttp://sbta.in/abdulhai.php?id=" + mediaID + "\\n\\nمن تطبيق الخطيب الحسيني عبدالحي آل قمبر:\\n\\nللأندرويد:\\nhttp://sbta.in/abdulhai_Android\\n\\nلنظام iOS:\\nhttp://sbta.in/abdulhai_iOS";
+		var output_share = output_title + "\\nالخطيب: " + output_name + "\\n\\n" + shareURL + "?id=" + mediaID + shareFooter;
 
-		document.getElementById('mainContent').innerHTML = '<article><h1><img src="images/arrowright.png" onclick="history.back();" /> ' + output_title + '</h1><p>' + output_name + ' - ' + output_date + '</p><div style="direction: ltr; float: right;"><div id="myElement">جاري تحميل المشغّل...</div></div><div class="clear"></div><br /><p style="text-align: center;"><a href="#" onclick="deleteFile(); return false;">حذف المقطع</a> || <a href="javascript:;" onclick="window.plugins.socialsharing.share(' + "'" + output_share + "'" + ')">مشاركة المقطع</a></p><p id="downloadMSG" style="text-align: center;"></p></article>';
+		document.getElementById('mainContent').innerHTML = '<article><h1><img src="theme/images/arrowright.png" onclick="history.back();" /> ' + output_title + '</h1><p>' + output_name + ' - ' + output_date + '</p><div style="direction: ltr; float: right;"><div id="myElement">جاري تحميل المشغّل...</div></div><div class="clear"></div><br /><p style="text-align: center;"><a href="#" onclick="deleteFile(); return false;">حذف المقطع</a> || <a href="javascript:;" onclick="window.plugins.socialsharing.share(' + "'" + output_share + "'" + ')">مشاركة المقطع</a></p><p id="downloadMSG" style="text-align: center;"></p></article>';
 
 		jwplayer("myElement").setup({
 			file: output_file,
@@ -118,7 +134,7 @@ localStorage.removeItem("mediaImg" + mediaID);
 localStorage.removeItem("mediaLink" + mediaID);
 localStorage.removeItem("mediaDate" + mediaID);
 
-//document.getElementById('downloadMSG').innerHTML = '<img class="noborder" src="images/tick.png" /> تم حذف المقطع بنجاح!';
+//document.getElementById('downloadMSG').innerHTML = '<img class="noborder" src="theme/images/tick.png" /> تم حذف المقطع بنجاح!';
 
 window.history.back();
 

@@ -2,10 +2,12 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>استماع مقطع | الخطيب الحسيني عبدالحي آل قمبر</title>
+  <title>استماع مقطع</title>
   <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0" /> 
   <link rel="stylesheet" media="all" href="css/style.css" type="text/css">
+  <link rel="stylesheet" media="all" href="theme/customize.css" type="text/css">
   <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+  <script type="text/javascript" charset="utf-8" src="settings.js"></script>
   <script type="text/javascript" src="jwplayer/jwplayer.js"></script>
   <script type="text/javascript" src="js/PushNotification.js"></script>
   
@@ -25,26 +27,23 @@
 
   <div class="wrap">
     <header>
-      <div class="logo"><a href="index.html"><img src="images/logo.png" alt="الخطيب الحسيني عبدالحي آل قمبر"/></a></div>
+      <div class="logo"><a href="index.html"><img src="theme/images/logo.png" /></a></div>
       <div class="options">
       	<ul>
-      		<li>Menu</li>
+      		<li>القائمة</li>
       	</ul>
       </div>
       <div class="clear"></div>
 	    <nav class="vertical menu">
-	    	<ul>
-				<li><a href="downloads.html">التحميلات</a></li>
-	            <li><a href="#" onclick="window.open('http://www.abdulhai.net/', '_system');return false;">الموقع الرسمي للخطيب</a></li>
-	            <li><a href="#" onclick="window.open('https://www.facebook.com/Abdulhai.Qambar', '_system');return false;">صفحة الخطيب على الفيس بوك</a></li>
+	    	<ul id="mainSbMenu">
         	</ul>
 	    </nav>
     </header>
       
-    <div class="content" id="mainContent"><img style="display: block; margin: 0 auto;" src="images/ajax.gif" border="0" /><br /><p style="color: #414141; text-align: center;">جاري التحميل..</p></div>
+    <div class="content" id="mainContent"><img style="display: block; margin: 0 auto;" src="theme/images/ajax.gif" border="0" /><br /><p id="sbLoading">جاري التحميل..</p></div>
     
 	<footer>
-    	<p style="direction: ltr; text-align: center;">Copyright &copy; 2015 <a href="#" onclick="window.open('http://www.abdulhai.net/', '_system');return false;">www.abdulhai.net</a><br />
+    	<p style="direction: ltr; text-align: center;">Copyright &copy; 2016 <a href="#" onclick="window.open(siteURL, '_system');return false;"><span id="sb_copyright"></span></a><br />
 		Powered by <a href="#" onclick="window.open('http://www.alsbtain.net/', '_system');return false;">Alsbtain Bulletin</a> - 
 		<a href="#" onclick="window.open('http://mobifreaks.com/free-mobile-website-templates/galaxy-mobi/', '_system');return false;">Mobifreaks</a> Template</p>
     </footer>
@@ -55,14 +54,31 @@
 
 	var pushNotification;
 	
-	function onDeviceReady() {
-		checkConnection();
+function onDeviceReady() {
+
+	arrayLength = internalMenu.title.length;
+	sbMenu = '';
+	for (i = 0; i < arrayLength; i++) {
+		sbMenu += '<li><a href="' + internalMenu.url[i] + '">' + internalMenu.title[i] + '</a></li>';
 	}
+	
+	arrayLength = externalMenu.title.length;
+	for (i = 0; i < arrayLength; i++) {
+		sbMenu += '<li><a href="#" onclick="window.open(\'' + externalMenu.url[i] + '\', \'_system\');return false;">' + externalMenu.title[i] + '</a></li>';
+	} 
+	var ul = document.getElementById("mainSbMenu");
+	ul.innerHTML += sbMenu;
+	
+	var sbCopyright = document.getElementById("sb_copyright");
+	sbCopyright.innerHTML = copyRight;
+		
+	checkConnection();
+}
 
     function checkConnection() {
 		if (navigator.connection.type == Connection.NONE){
 		
-		var output = '<img style="display: block; margin: 0 auto;" src="images/wifi.png" border="0" /><br /><p style="color: #4dc5ff; text-align: center;">هذه الخدمة تتطلب اتصالاً بالإنترنت..<br /><a href="downloads.html"><img src="images/downloads.png" border="0" style="padding-top: 8px;" /></a></p>';
+		var output = '<img style="display: block; margin: 0 auto;" src="theme/images/wifi.png" border="0" /><br /><p id="sbNoWiFi">هذه الخدمة تتطلب اتصالاً بالإنترنت..<br /><a href="downloads.html"><img src="theme/images/downloads.png" border="0" style="padding-top: 8px;" /></a></p>';
 		document.getElementById('mainContent').innerHTML = output;
 		
 		} else {
@@ -77,7 +93,7 @@
 		var newScript = document.createElement('script');  
 		newScript.type = 'text/javascript';
 		newScript.charset = 'utf-8';  
-		newScript.src = 'http://www.abdulhai.net/external/media_mobile12.sb.php?version=150&id=' + getUrlVars()["id"];  
+		newScript.src = siteURL + 'external/media_mobile14.sb.php?version=150&id=' + getUrlVars()["id"];  
 		headID.appendChild(newScript);  
 		
 		}		
@@ -118,11 +134,11 @@ function downloadFile() {
 mediaIDs = ';' + localStorage.getItem("downloaded") + ';';
 if(mediaIDs.indexOf(';' + getUrlVars()["id"] + ';') > -1){
 
-	document.getElementById('downloadMSG').innerHTML = '<img class="noborder" src="images/cross.png" /> تم تحميل هذا الملف مسبقاً!';
+	document.getElementById('downloadMSG').innerHTML = '<img class="noborder" src="theme/images/cross.png" /> تم تحميل هذا الملف مسبقاً!';
 
 }else{
 
-	document.getElementById('downloadMSG').innerHTML = '<img class="noborder" src="images/loading.gif" /> جاري التحميل...';
+	document.getElementById('downloadMSG').innerHTML = '<img class="noborder" src="theme/images/loading.gif" /> جاري التحميل...';
 	
     //step to request a file system 
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, fileSystemSuccess, fileSystemFail);
@@ -150,13 +166,13 @@ if(mediaIDs.indexOf(';' + getUrlVars()["id"] + ';') > -1){
     function onDirectoryFail(error) {
         //Error while creating directory
         //alert("Unable to create new directory: " + error.code);
-		document.getElementById('downloadMSG').innerHTML = '<img class="noborder" src="images/cross.png" /> حدث خطأ أثناء التحميل!';
+		document.getElementById('downloadMSG').innerHTML = '<img class="noborder" src="theme/images/cross.png" /> حدث خطأ أثناء التحميل!';
     }
 
     function fileSystemFail(evt) {
         //Unable to access file system
         //alert(evt.target.error.code);
-		document.getElementById('downloadMSG').innerHTML = '<img class="noborder" src="images/cross.png" /> حدث خطأ أثناء التحميل!';
+		document.getElementById('downloadMSG').innerHTML = '<img class="noborder" src="theme/images/cross.png" /> حدث خطأ أثناء التحميل!';
     }
 }}
 
@@ -173,14 +189,19 @@ function filetransfer(download_link, fp) {
 			localStorage.setItem("mediaImg" + mediaID, output_profilePic);
 			localStorage.setItem("mediaLink" + mediaID, fp);
 			localStorage.setItem("mediaDate" + mediaID, output_date);
-			document.getElementById('downloadMSG').innerHTML = '<img class="noborder" src="images/tick.png" /> تم التحميل!';
+			document.getElementById('downloadMSG').innerHTML = '<img class="noborder" src="theme/images/tick.png" /> تم التحميل!';
         },
         function(error) {
             //Download abort errors or download failed errors
             //alert("download error source " + error.source);
-			document.getElementById('downloadMSG').innerHTML = '<img class="noborder" src="images/cross.png" /> حدث خطأ أثناء التحميل!';
+			document.getElementById('downloadMSG').innerHTML = '<img class="noborder" src="theme/images/cross.png" /> حدث خطأ أثناء التحميل!';
         }
     );
+}
+
+window.onerror = function(msg, url, linenumber) {
+    alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+    return true;
 }
 </script>
 </body>

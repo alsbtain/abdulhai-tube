@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>مكتبة الميديا</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0" /> 
+  <link rel="stylesheet" media="all" href="css/style.css" type="text/css">
+  <link rel="stylesheet" media="all" href="theme/customize.css" type="text/css">
+  <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+  <script type="text/javascript" charset="utf-8" src="settings.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/video.js"></script>
+  <script type="text/javascript" src="js/PushNotification.js"></script>
+  
+  <script type="text/javascript">	
+	function getUrlVars() {
+		var vars = {};
+		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+			vars[key] = value;
+		});
+		return vars;
+	}
+	
+	function openPage(newPage) {
+		location.href='media.html?c=' + getUrlVars()["c"] + '&page=' + (newPage-1);
+	}
+  </script>
+  
+</head>
+
+<body>
+
+  <div class="wrap">
+    <header>
+      <div class="logo"><a href="index.html"><img src="theme/images/logo.png" /></a></div>
+      <div class="options">
+      	<ul>
+      		<li>القائمة</li>
+      	</ul>
+      </div>
+      <div class="clear"></div>
+	    <nav class="vertical menu">
+	    	<ul id="mainSbMenu">
+        	</ul>
+	    </nav>
+    </header>
+	
+    <div class="content" id="mainContent"><img style="display: block; margin: 0 auto;" src="theme/images/ajax.gif" border="0" /><br /><p id="sbLoading">جاري التحميل..</p></div>
+	
+    <footer>
+    	<p style="direction: ltr; text-align: center;">Copyright &copy; 2016 <a href="#" onclick="window.open(siteURL, '_system');return false;"><span id="sb_copyright"></span></a><br />
+		Powered by <a href="#" onclick="window.open('http://www.alsbtain.net/', '_system');return false;">Alsbtain Bulletin</a> - 
+		<a href="#" onclick="window.open('http://mobifreaks.com/free-mobile-website-templates/galaxy-mobi/', '_system');return false;">Mobifreaks</a> Template</p>
+    </footer>
+  </div>
+ 
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript">
+
+	var pushNotification;
+
+	function onDeviceReady() {
+	
+		arrayLength = internalMenu.title.length;
+		sbMenu = '';
+		for (i = 0; i < arrayLength; i++) {
+			sbMenu += '<li><a href="' + internalMenu.url[i] + '">' + internalMenu.title[i] + '</a></li>';
+		}
+
+		arrayLength = externalMenu.title.length;
+		for (i = 0; i < arrayLength; i++) {
+			sbMenu += '<li><a href="#" onclick="window.open(\'' + externalMenu.url[i] + '\', \'_system\');return false;">' + externalMenu.title[i] + '</a></li>';
+		} 
+		var ul = document.getElementById("mainSbMenu");
+		ul.innerHTML += sbMenu;
+		
+		var sbCopyright = document.getElementById("sb_copyright");
+		sbCopyright.innerHTML = copyRight;
+
+		checkConnection();
+	}
+
+    function checkConnection() {
+		if (navigator.connection.type == Connection.NONE){
+		
+		var output = '<img style="display: block; margin: 0 auto;" src="theme/images/wifi.png" border="0" /><br /><p id="sbNoWiFi">هذه الخدمة تتطلب اتصالاً بالإنترنت..<br /><a href="downloads.html"><img src="theme/images/downloads.png" border="0" style="padding-top: 8px;" /></a></p>';
+		document.getElementById('mainContent').innerHTML = output;
+		
+		} else {
+		
+		// Push Notifications DeviceReady
+		
+		$.getScript("js/push_deviceReady.js", function(){});
+		
+		// End of Push Notifications DeviceReady
+		
+		var output_website = '';
+		var headID = document.getElementsByTagName("head")[0];         
+		var newScript = document.createElement('script');  
+		newScript.type = 'text/javascript';
+		newScript.charset = 'utf-8';  
+		newScript.src = siteURL + 'external/media_mobile14.sb.php?c=' + getUrlVars()["c"] + '&page=' + getUrlVars()["page"];  
+		headID.appendChild(newScript);
+
+		}
+	}
+	
+	// Push Notifications Functions
+	
+	$.getScript("js/push_functions.js", function(){});
+
+	// End of Push Notifications Functions
+	
+	document.addEventListener("deviceready", onDeviceReady, true);
+
+var mediaIDs;
+	
+function goToPlayer(id){
+
+mediaIDs = ';' + localStorage.getItem("downloaded") + ';';
+if(mediaIDs.indexOf(';' + id + ';') > -1){
+window.location.href = "localPlayer.html?id=" + id;
+}else{
+window.location.href = "player.html?id=" + id;
+}
+
+}
+
+   window.addEventListener("load",function() {
+	  // Set a timeout...
+	  setTimeout(function(){
+	    // Hide the address bar!
+	    window.scrollTo(0, 1);
+	  }, 0);
+	});
+   $('.menu' ).hide();
+   $('.options li:last-child').click(function(){
+   		$(this).toggleClass('active');      			
+   		$('.menu').toggle();		
+   });
+   $('.content').click(function(){
+   		$('.menu' ).hide();   
+   		$('.options li:last-child').removeClass('active');
+   });
+</script>
+</body>
+</html>
