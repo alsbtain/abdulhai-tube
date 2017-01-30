@@ -32,17 +32,17 @@
     <preference name="android-minSdkVersion" value="7" />
     <preference name="android-installLocation" value="auto" />
 
-    <gap:plugin name="org.apache.cordova.network-information" />
-    <gap:plugin name="org.apache.cordova.inappbrowser" />
-	<gap:plugin name="org.apache.cordova.splashscreen" />
-	<gap:plugin name="org.apache.cordova.device" />
-    <gap:plugin name="org.apache.cordova.dialogs" />
-	<gap:plugin name="org.apache.cordova.file" />
-	<gap:plugin name="org.apache.cordova.file-transfer" />
+	<plugin name="cordova-plugin-network-information" source="npm" />
+	<plugin name="cordova-plugin-inappbrowser" source="npm" />
+	<plugin name="cordova-plugin-splashscreen" source="npm" />
+	<plugin name="cordova-plugin-device" source="npm" />
+	<plugin name="cordova-plugin-dialogs" source="npm" />
+	<plugin name="cordova-plugin-file" source="npm" />
+	<plugin name="cordova-plugin-file-transfer" source="npm" />
 
-	<gap:plugin name="nl.x-services.plugins.socialsharing" />
-	<gap:plugin name="com.phonegap.plugins.pushplugin" />
-	<gap:plugin name="nl.kingsquare.background-audio" />
+	<plugin name="cordova-plugin-x-socialsharing" source="npm" />
+	<plugin name="phonegap-plugin-push-deprecated" source="npm" />
+	<plugin name="nl.kingsquare.cordova.background-audio" source="npm" />
 	
 	<plugin name="com.indigoway.cordova.whitelist.whitelistplugin" spec="1.1.1" source="pgb" />
 
