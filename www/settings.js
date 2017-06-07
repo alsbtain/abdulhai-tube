@@ -8,8 +8,8 @@ var internalMenu = {
 };
 
 var externalMenu = { 
-    title: ["الموقع الرسمي للخطيب", "صفحة الخطيب على الفيس بوك"],
-    url: ["http://www.abdulhai.net/", "https://www.facebook.com/Abdulhai.Qambar"]
+    title: ["الموقع الرسمي للخطيب", "صفحة الخطيب على الانستقرام"],
+    url: ["http://www.abdulhai.net/", "https://www.instagram.com/abdulhai.qambar/"]
 };
 
 var copyRight = 'www.abdulhai.net';
