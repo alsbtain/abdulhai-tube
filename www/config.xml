@@ -3,8 +3,8 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.Alsbtain.Abdulhai"
-        version   = "1.6.1"
-		versionCode = "8">
+        version   = "1.7.0"
+		versionCode = "9">
 
     <name>Abdulhai</name>
 
@@ -40,9 +40,10 @@
     <plugin name="cordova-plugin-network-information" />
     <plugin name="cordova-plugin-splashscreen" />
 
-	<plugin name="phonegap-plugin-push" />
 	<plugin name="cordova-plugin-x-socialsharing" />
-	<plugin name="https://github.com/AubreyHewes/cordova-background-audio.git" />
+	<!--<plugin name="https://github.com/AubreyHewes/cordova-background-audio.git" />-->
+	
+	<plugin spec="https://github.com/alsbtain/PushPlugin.git" />
 
     <icon src="icon.png" />
     <icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"	gap:qualifier="ldpi" />
@@ -68,7 +69,7 @@
 	<gap:splash src="splash.png"	gap:platform="ios"     width="640"	height="1136" />
 
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
-    <string>161</string>
+    <string>170</string>
     </gap:config-file>
 
     <access origin="*"/>
